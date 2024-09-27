@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конфигурация бота</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Конфигурация бота</h1>
+
+        <form id="config-form">
+            <label for="token">Новый токен:</label><br>
+            <input type="text" id="token" name="token" placeholder="Введите новый токен"><br>
+
+            <label for="style">Стиль общения:</label><br>
+            <input type="text" id="style" name="style" placeholder="Введите новый стиль общения"><br>
+
+            <button type="button" onclick="saveConfig()">Сохранить</button>
+        </form>
+    </div>
+
+    <script>
+        function saveConfig() {
+            const token = document.getElementById('token').value;
+            const style = document.getElementById('style').value;
+
+            // Отправка данных обратно боту
+            window.Telegram.WebApp.sendData(JSON.stringify({
+                token: token,
+                style: style
+            }));
+        }
+
+        window.Telegram.WebApp.ready();  // Сообщаем Телеграм, что приложение готово
+    </script>
+</body>
+</html>
